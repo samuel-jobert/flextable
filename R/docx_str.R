@@ -289,7 +289,13 @@ gen_raw_wml <- function(x, ...) {
   if (all(x$body$styles$pars$keep_with_next$data == FALSE) |  all(x$body$styles$pars$keep_with_next$data == TRUE)) {
     x <- keep_wn(x, part = "all",
                 keep_with_next = x$properties$opts_word$keep_with_next)
+  } else {
+    x <- keep_wn(x, part = "header",
+                keep_with_next = x$properties$opts_word$keep_with_next)
+    x <- keep_wn(x, part = "footer",
+                keep_with_next = x$properties$opts_word$keep_with_next)
   }
+
   out <- paste0(
     "<w:tbl xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" ",
     "xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" ",
