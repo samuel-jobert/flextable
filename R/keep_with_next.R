@@ -21,7 +21,7 @@
 #' ft = ft %>% set_keep_with_next(rows = c(10, 10+15, 10+15+25, 10+15+25+5), value = FALSE)
 #' 
 #' doc = read_docx()
-#' doc = doc %>% body_add_par("")
+#' doc = doc %>% body_add_par("Insert lines here !")
 #' doc = doc %>% body_add_flextable(ft, keepnext = TRUE, split = FALSE)
 #' print(doc, target = "mon_doc.docx")
 
