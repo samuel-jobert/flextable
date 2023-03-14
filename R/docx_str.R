@@ -284,9 +284,12 @@ gen_raw_wml <- function(x, ...) {
   dims <- dim(x)
   widths <- dims$widths
 
-  x <- keep_wn(x, part = "all",
-               keep_with_next = x$properties$opts_word$keep_with_next)
-
+  # If some rows have different keep_with_next values (set with function set_keep_with_next), we don't apply the default
+  # table keep_with_next to all paragraphs
+  if (all(x$body$styles$pars$keep_with_next$data == FALSE) |  all(x$body$styles$pars$keep_with_next$data == TRUE)) {
+    x <- keep_wn(x, part = "all",
+                keep_with_next = x$properties$opts_word$keep_with_next)
+  }
   out <- paste0(
     "<w:tbl xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" ",
     "xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" ",
