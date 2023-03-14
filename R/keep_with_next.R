@@ -14,7 +14,7 @@
 #' doc = read_docx()
 #' doc = doc %>% body_add_flextable(keep_with_next = FALSE, split = FALSE)
 #' print(doc, target = "my_doc_with_kn.docx")
-set_keep_with_next <- function(x, rows, value = TRUE) {
+set_keep_with_next <- function(x, rows = NULL, value = TRUE) {
 	stopifnot(inherits(x, "flextable"))
 	rows <- get_rows_id(x$body, rows)
 	x$body$styles$pars$keep_with_next[rows, ] <- value
